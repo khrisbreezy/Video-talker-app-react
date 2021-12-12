@@ -57,7 +57,7 @@ export const createPeerConnection = () => {
   const turnServers = getTurnServes();
 
   const configuration = {
-    iceServers: [...turnServers, { url: 'stun: stun.1und1.de:3478' }],
+    iceServers: [...turnServers, { url: 'stun:stun.1und1.de:3478' }],
     iceTransportPolicy: 'relay'
   };
 
