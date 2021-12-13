@@ -19,7 +19,7 @@ import {
   clearGroupData,
 } from "../webRTC/webRTCGroupCallHandler";
 
-const SERVER = "http://localhost:5000";
+const SERVER = "https://app-video-talker-server.herokuapp.com/";
 
 let socket;
 

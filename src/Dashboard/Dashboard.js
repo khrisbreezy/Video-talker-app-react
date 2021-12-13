@@ -23,7 +23,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     try {
-      const data = axios.get('http://localhost:5000/api/get-turn-credentials');
+      const data = axios.get('https://app-video-talker-server.herokuapp.com/api/get-turn-credentials');
       data.then(res => {
         setTurnServers(res.data.token.iceServers);
         getLocalStream();
