@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 // import Cookies from 'js-cookie';
@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import logo from '../resources/logo.png';
 import UsernameInput from './components/UsernameInput';
 import SubmitButton from './components/SubmitButton';
-import { setDashboardUsername } from '../store/actions/dashboard';
+import { setDashboardUsername, saveActiveUsers, saveActiveRooms } from '../store/actions/dashboard';
 import { registerNewUser } from '../utils/wssConnection/wssConnection';
 
 import './Login.css';
@@ -18,6 +18,12 @@ const Login = () => {
     // const activeUsersList = localStorage.getItem('activeUsers') ? JSON.parse(localStorage.getItem('activeUsers')) : [];
 
     const [username, setUsername] = useState('');
+
+    useEffect(() => {
+        dispatch(setDashboardUsername(null));
+        dispatch(saveActiveRooms([]));
+        dispatch(saveActiveUsers([]));
+    }, [dispatch]);
 
 
   const handleSubmitButtonPressed = () => {

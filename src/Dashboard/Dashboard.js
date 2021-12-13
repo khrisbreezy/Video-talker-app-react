@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 
 import logo from '../resources/logo.png';
 
@@ -18,8 +18,17 @@ import GroupCall from './components/GroupCall/GroupCall';
 import { setTurnServers } from '../utils/webRTC/TURN';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
 
   const callState = useSelector( state => state.call.callState);
+  const username = useSelector(state => state.dashReducer.username);
+
+  useEffect(() => {
+    if (!username) {
+      navigate('/');
+      return;
+    }
+  }, [navigate, username]);
 
   useEffect(() => {
     try {

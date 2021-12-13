@@ -5,12 +5,17 @@ import { Provider } from 'react-redux';
 // import {composeWithDevTools} from "redux-devtools-extension";
 // import thunkMiddleware from "redux-thunk";
 
+import {persistStore} from 'redux-persist';
+import {PersistGate} from "redux-persist/integration/react";
+
 import './index.css';
 
 import App from './App';
 // import dashboardReducer from './store/reducers/dashboard';
 // import callActionReducer from './store/reducers/callReducer';
 import store from './store/store';
+
+const persistor = persistStore(store);
 
 // const rootReducer = combineReducers({
 //   dashReducer: dashboardReducer,
@@ -22,7 +27,9 @@ import store from './store/store';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <PersistGate persistor={persistor} loading={null}>
+          <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
